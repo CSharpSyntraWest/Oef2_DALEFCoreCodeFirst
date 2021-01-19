@@ -24,7 +24,7 @@ namespace School.DataLayer.Models
         { 
             if(!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=ScholenDb2;Integrated Security=True;Pooling=False");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=ScholenDb;Integrated Security=True;Pooling=False");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
