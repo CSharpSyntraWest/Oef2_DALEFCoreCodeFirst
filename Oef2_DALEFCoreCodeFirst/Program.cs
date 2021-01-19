@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using School.DataLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,30 @@ namespace Oef2_DALEFCoreCodeFirst
             {
                 vak1 = new DbVak() { Naam = "C#", AantalLesuren = 100 };
             }
+            else
+            {
+                Console.WriteLine($"Vak {vak1.Naam} gevonden met Id= {vak1.VakId} Aantal ingeschreven studenten: {vak1.Studenten.Count}");
+            }
             DbVak vak2 = ZoekVakOpNaam("DataBase");
-            if(vak2 ==null)  vak2 = new DbVak() { Naam = "DataBase", AantalLesuren = 80 };
+            if(vak2 ==null)  
+                
+                vak2 = new DbVak() { Naam = "DataBase", AantalLesuren = 80 };
+            else
+                Console.WriteLine($"Vak {vak2.Naam} gevonden met Id= {vak2.VakId} Aantal ingeschreven studenten: {vak2.Studenten.Count}");
             DbStudent dbStudent = ZoekStudent("Jan", "Jansens", new DateTime(1990, 1, 1));
-            if (dbStudent == null)   
-                 dbStudent = new DbStudent() { Voornaam = "Jan", Familienaam = "Jansens", 
-                GeboorteDatum = new DateTime(1990, 1, 1) };
+            if (dbStudent == null)
+            {
+                dbStudent = new DbStudent()
+                {
+                    Voornaam = "Jan",
+                    Familienaam = "Jansens",
+                    GeboorteDatum = new DateTime(1990, 1, 1)
+                };
+            }
+            else
+            {
+                Console.WriteLine($"Student {dbStudent.Voornaam} {dbStudent.Familienaam} gevonden, aantal vakken: {dbStudent.Vakken.Count}");
+            }
             //VoegStudentToeMetVakken(dbSchool, dbStudent,vak1,vak2); 
             Console.ReadKey();
         }
@@ -36,7 +55,7 @@ namespace Oef2_DALEFCoreCodeFirst
         {
             using (SchoolDbContext db = new SchoolDbContext())
             {
-                DbStudent dbStudent = db.DbStudenten.Where(s => s.Voornaam.ToLower() == voornaam.ToLower()
+                DbStudent dbStudent = db.DbStudenten.Include(s => s.Vakken).Where(s => s.Voornaam.ToLower() == voornaam.ToLower()
                                         && s.Familienaam.ToLower() == familienaam.ToLower()
                                         && s.GeboorteDatum == geboorteDatum).FirstOrDefault();
                 return dbStudent;
@@ -46,7 +65,7 @@ namespace Oef2_DALEFCoreCodeFirst
         {
             using (SchoolDbContext db = new SchoolDbContext())
             {
-                DbVak dbVak = db.DbVakken.Where(param => param.Naam.ToLower() == vakNaam.ToLower()).FirstOrDefault();
+                DbVak dbVak = db.DbVakken.Include(v => v.Studenten).Where(param => param.Naam.ToLower() == vakNaam.ToLower()).FirstOrDefault();
                 return dbVak;
             }
         }
