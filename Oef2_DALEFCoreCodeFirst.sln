@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oef2_DALEFCoreCodeFirst", "Oef2_DALEFCoreCodeFirst\Oef2_DALEFCoreCodeFirst.csproj", "{2196589B-9FF5-467E-BD07-D413439EF246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School.DataLayer", "School.DataLayer\School.DataLayer.csproj", "{1F6C2315-D545-4455-BED5-3963ECF0B85D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2196589B-9FF5-467E-BD07-D413439EF246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2196589B-9FF5-467E-BD07-D413439EF246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2196589B-9FF5-467E-BD07-D413439EF246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2196589B-9FF5-467E-BD07-D413439EF246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6C2315-D545-4455-BED5-3963ECF0B85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F6C2315-D545-4455-BED5-3963ECF0B85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F6C2315-D545-4455-BED5-3963ECF0B85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F6C2315-D545-4455-BED5-3963ECF0B85D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70166DCF-2CC2-4482-9180-4DD1627F0BF1}
+	EndGlobalSection
+EndGlobal
