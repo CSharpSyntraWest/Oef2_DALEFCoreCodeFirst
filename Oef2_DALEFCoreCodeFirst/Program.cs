@@ -17,14 +17,39 @@ namespace Oef2_DALEFCoreCodeFirst
                 Console.WriteLine("School 'Syntra-West' niet gevonden");
                 return;
             }
-            DbStudent dbStudent = new DbStudent() { Voornaam = "Jan", Familienaam = "Jansens", 
+            DbVak vak1 = ZoekVakOpNaam("C#");
+            if (vak1 == null)
+            {
+                vak1 = new DbVak() { Naam = "C#", AantalLesuren = 100 };
+            }
+            DbVak vak2 = ZoekVakOpNaam("DataBase");
+            if(vak2 ==null)  vak2 = new DbVak() { Naam = "DataBase", AantalLesuren = 80 };
+            DbStudent dbStudent = ZoekStudent("Jan", "Jansens", new DateTime(1990, 1, 1));
+            if (dbStudent == null)   
+                 dbStudent = new DbStudent() { Voornaam = "Jan", Familienaam = "Jansens", 
                 GeboorteDatum = new DateTime(1990, 1, 1) };
-            DbVak vak1 = new DbVak() { Naam = "C#", AantalLesuren = 100 };
-            DbVak vak2 = new DbVak() { Naam = "DataBase", AantalLesuren = 80 };
-            VoegStudentToeMetVakken(dbSchool, dbStudent,vak1,vak2); 
+            //VoegStudentToeMetVakken(dbSchool, dbStudent,vak1,vak2); 
             Console.ReadKey();
         }
 
+        private static DbStudent ZoekStudent(string voornaam, string familienaam, DateTime geboorteDatum)
+        {
+            using (SchoolDbContext db = new SchoolDbContext())
+            {
+                DbStudent dbStudent = db.DbStudenten.Where(s => s.Voornaam.ToLower() == voornaam.ToLower()
+                                        && s.Familienaam.ToLower() == familienaam.ToLower()
+                                        && s.GeboorteDatum == geboorteDatum).FirstOrDefault();
+                return dbStudent;
+            }
+        }
+        private static DbVak ZoekVakOpNaam(string vakNaam)
+        {
+            using (SchoolDbContext db = new SchoolDbContext())
+            {
+                DbVak dbVak = db.DbVakken.Where(param => param.Naam.ToLower() == vakNaam.ToLower()).FirstOrDefault();
+                return dbVak;
+            }
+        }
         private static void VoegStudentToeMetVakken(DbSchool dbSchool, DbStudent dbStudent, params DbVak[] vakken)
         {
             using (SchoolDbContext db = new SchoolDbContext())
