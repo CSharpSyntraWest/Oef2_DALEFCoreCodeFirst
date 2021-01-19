@@ -50,7 +50,7 @@ namespace School.DataLayer.Models
             });
             modelBuilder.Entity<DbDocent>(entity => {
                 entity.ToTable("Docent");
-                entity.Property(e => e.Uurloon).HasColumnType(nameof(System.Decimal)).HasPrecision(2, 2).IsRequired(true);
+                entity.Property(e => e.Uurloon).HasColumnType(nameof(System.Decimal)).HasPrecision(10, 2).IsRequired(true);
             });
             modelBuilder.Entity<DbVak>(entity =>
             {

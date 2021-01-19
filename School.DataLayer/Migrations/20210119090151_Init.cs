@@ -54,7 +54,7 @@ namespace School.DataLayer.Migrations
                 columns: table => new
                 {
                     PersoonId = table.Column<int>(type: "int", nullable: false),
-                    Uurloon = table.Column<decimal>(type: "Decimal(2,2)", precision: 2, scale: 2, nullable: false),
+                    Uurloon = table.Column<decimal>(type: "Decimal(10,2)", precision: 2, scale: 2, nullable: false),
                     DbSchoolSchoolId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
