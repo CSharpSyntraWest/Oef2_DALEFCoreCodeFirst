@@ -1,4 +1,7 @@
-﻿using System;
+﻿using School.DataLayer.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Oef2_DALEFCoreCodeFirst
 {
@@ -6,7 +9,17 @@ namespace Oef2_DALEFCoreCodeFirst
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (SchoolDbContext db = new SchoolDbContext())
+            {
+                db.DbScholen.Add(new DbSchool() { Naam = "Syntra-West" });
+                db.SaveChanges();
+                List<DbSchool> scholen = db.DbScholen.ToList();
+                foreach (DbSchool dbSchool in scholen)
+                {
+                    Console.WriteLine($"{dbSchool.SchoolId} : {dbSchool.Naam}");
+                }
+            }
+            Console.ReadKey();
         }
     }
 }

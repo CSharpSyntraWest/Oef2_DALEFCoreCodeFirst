@@ -2,6 +2,6 @@
 {
     public class DbDocent: DbPersoon
     {
-        public double Uurloon { get; set; }
+        public decimal Uurloon { get; set; }
     }
 }
